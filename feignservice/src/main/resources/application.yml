@@ -24,3 +24,6 @@ mybatis:
     map-underscore-to-camel-case: true  # mybatis驼峰命名
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台打印log信息
 
+logging:
+  level:
+    org.springframework.cloud.sleuth: debug
