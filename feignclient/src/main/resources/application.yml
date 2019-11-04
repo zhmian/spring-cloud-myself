@@ -1,0 +1,73 @@
+server:
+  port: 8101
+#  servlet:
+#    context-path: /client
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@peer1:8001/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: feign-client
+
+
+logging:
+  level:
+    com.tuling.api: debug # feign client 日志打印
+
+
+# 开启feign支持hystrix的降级方法
+feign:
+  hystrix:
+    enabled: true
+
+
+# 设置全局的超时时间
+ribbon:
+  ReadTimeout: 2000
+  ConnectTimeout: 2000
+
+
+# 监控的管理
+management:
+  endpoint:
+    health:
+      show-details: always  # 监控端点显示详情
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+
+hystrix:
+  command:
+    default:  # default默认全局配置，可以指定特定的服务
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+      circuitBreaker:   # 熔断是否开启（和降级不同）
+          enabled: true
+#      metrics:
+#        rollingStats:
+#          timeInMilliseconds: 20000
+#          sleepWindowInMilliseconds: 15000
+#      circuitBreaker:
+#        requestVolumeThreshold: 5
+#        errorThresholdPercentage: 60
+
+#指定特定接口的超时时间
+#hystrix.command.queryUserInfoByName.execution.isolation.thread.timeoutInMilliseconds=10
+
+#设置时间滑动窗口(默认10s)
+#hystrix.command.default.metrics.rollingStats.timeInMilliseconds=20000
+#当熔断器打开的时候，多长时间内会拒绝所有的请求直接调用降级方法,过了该值就进入半开状态
+#hystrix.command.default.metrics.rollingStats.sleepWindowInMilliseconds=15000
+
+#时间窗口中，请求的的次数失败的次数达到该值，熔断器就直接打开.
+#hystrix.command.default.circuitBreaker.requestVolumeThreshold=5
+#时间窗口内，请求失败次数/请求总次数>60就直接打开
+#hystrix.command.default.circuitBreaker.errorThresholdPercentage=60

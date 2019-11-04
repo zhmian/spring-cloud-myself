@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://root:root@peer1:8001/eureka/
+  instance:
+    prefer-ip-address: true
+turbine:
+  aggregator:
+    cluster-config: default
+  app-config: feignclient,ribbon-client   # 监控的服务名称
+  cluster-name-expression: "'default'"    # 集群的名称
+spring:
+  application:
+    name: turbine

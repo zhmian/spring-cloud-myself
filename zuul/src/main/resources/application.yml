@@ -1,0 +1,38 @@
+server:
+  port: 9090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@peer1:8001/eureka/
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: zuul
+
+zuul:
+  routes:
+#    feign-client: /feign/**
+#    user-routing:
+    user-routing:
+      serviceId: feign-client
+      path: /feign/**
+#      sensitiveHeaders:
+  ignored-services: "*"
+  #  prefix: /api
+  #  strip-prefix: true
+
+#  ignored-patterns: /**/getCorrect/**
+
+hystrix:
+  command:
+    default:  # default默认全局配置，可以指定特定的服务
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+
+# 设置全局的超时时间
+ribbon:
+  ReadTimeout: 2000
+  ConnectTimeout: 2000
