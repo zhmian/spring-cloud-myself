@@ -14,15 +14,19 @@ zuul:
   routes:
 #    feign-client: /feign/**
 #    user-routing:
+#    用指定路径访问服务
     user-routing:
       serviceId: feign-client
       path: /feign/**
-#      sensitiveHeaders:
+# 允许cookie等通过
+#     sensitiveHeaders:
+#  禁止所有服务名称访问
   ignored-services: "*"
+# 前缀路径
   #  prefix: /api
   #  strip-prefix: true
-
-#  ignored-patterns: /**/getCorrect/**
+# 过滤敏感路径
+  ignored-patterns: /**/admin/**
 
 hystrix:
   command:
