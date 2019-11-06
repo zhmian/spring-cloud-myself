@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+#      环境
+      profile: prod
+#      分支
+      label: master
+#      config 服务端
+      uri: http://localhost:9100
+
+# 监控的管理,开放所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
