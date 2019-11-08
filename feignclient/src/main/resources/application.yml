@@ -13,6 +13,15 @@ eureka:
 spring:
   application:
     name: feign-client
+  rabbitmq:
+    host: 115.28.137.138
+    port: 5672
+    #    virtual-host: amqp
+    username: guest
+    password: guest
+    connection-timeout: 10000
+    template:
+      mandatory: true
 
 
 # 开启feign支持hystrix的降级方法

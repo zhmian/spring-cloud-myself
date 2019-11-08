@@ -3,12 +3,17 @@ spring:
     name: config-client
   cloud:
     config:
-#      环境
-      profile: prod
-#      分支
+      #      环境
+      #      分支
       label: master
 #      config 服务端
       uri: http://localhost:9100
+      profile: prod
+    bus:
+      id: ${spring.application.name}:${spring.cloud.config.profile}:${random.value}
+      # id: ${vcap.application.name:${spring.application.name:application}}:${vcap.application.instance_index:${spring.cloud.config.profile:${local.server.port:${server.port:0}}}}:${vcap.application.instance_id:${random.value}}
+      trace:
+        enabled: true
 
 # 监控的管理,开放所有端点
 management:
@@ -16,3 +21,4 @@ management:
     web:
       exposure:
         include: "*"
+
