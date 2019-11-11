@@ -9,7 +9,15 @@ spring:
     username: root
     password: bec123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    web:
+      client:
+        enabled: true
+    # 采样比例默认0.1，为1表示全部上报
+    sampler:
+      probability: 1
 
 eureka:
   client:

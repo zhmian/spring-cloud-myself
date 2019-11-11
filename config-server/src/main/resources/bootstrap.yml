@@ -1,2 +1,7 @@
 encrypt:
   key: tuling
+spring:
+  security:
+    user:
+      name: root
+      password: root

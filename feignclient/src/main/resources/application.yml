@@ -13,16 +13,24 @@ eureka:
 spring:
   application:
     name: feign-client
-  rabbitmq:
-    host: 115.28.137.138
-    port: 5672
-    #    virtual-host: amqp
-    username: guest
-    password: guest
-    connection-timeout: 10000
-    template:
-      mandatory: true
-
+#  rabbitmq:
+#    host: 115.28.137.138
+#    port: 5672
+#    #    virtual-host: amqp
+#    username: guest
+#    password: guest
+#    connection-timeout: 10000
+#    template:
+#      mandatory: true
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    web:
+      client:
+        enabled: true
+    # 采样比例默认0.1，为1表示全部上报
+    sampler:
+      probability: 1
 
 # 开启feign支持hystrix的降级方法
 feign:
@@ -32,8 +40,8 @@ feign:
 
 # 设置全局的超时时间
 ribbon:
-  ReadTimeout: 2000
-  ConnectTimeout: 2000
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
 
 
 # 监控的管理
@@ -52,7 +60,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 2000
+            timeoutInMilliseconds: 15000
       circuitBreaker:   # 熔断是否开启（和降级不同）
           enabled: true
 #      metrics:

@@ -1,5 +1,7 @@
 package com.tuling.configserver;
 
+import org.springframework.stereotype.Component;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -8,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-//@Component
+@Component
 public class UrlFilter  implements Filter {
 
     @Override

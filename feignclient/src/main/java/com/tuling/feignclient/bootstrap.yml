@@ -9,6 +9,18 @@ spring:
 #      config 服务端
       uri: http://localhost:9100
       profile: prod
+      username: root
+      password: root
+  zipkin:
+    base-url: http://localhost:9411/
+    message-timeout: 10
+  sleuth:
+    web:
+      client:
+        enabled: true
+    # 采样比例默认0.1，为1表示全部上报
+    sampler:
+      probability: 1
 
 # 监控的管理,开放所有端点
 management:

@@ -9,6 +9,8 @@ spring:
 #      config 服务端
       uri: http://localhost:9100
       profile: prod
+      username: root
+      password: root
     bus:
       id: ${spring.application.name}:${spring.cloud.config.profile}:${random.value}
       # id: ${vcap.application.name:${spring.application.name:application}}:${vcap.application.instance_index:${spring.cloud.config.profile:${local.server.port:${server.port:0}}}}:${vcap.application.instance_id:${random.value}}
