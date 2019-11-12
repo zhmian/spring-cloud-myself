@@ -10,7 +10,8 @@ spring:
     password: bec123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   zipkin:
-    base-url: http://localhost:9411/
+    sender:
+      type: rabbit
   sleuth:
     web:
       client:
@@ -18,6 +19,14 @@ spring:
     # 采样比例默认0.1，为1表示全部上报
     sampler:
       probability: 1
+  rabbitmq:
+    host: 115.28.137.138
+    port: 5672
+    #    virtual-host: amqp
+    username: guest
+    password: guest
+    connection-timeout: 10000
+    virtual-host: /
 
 eureka:
   client:
